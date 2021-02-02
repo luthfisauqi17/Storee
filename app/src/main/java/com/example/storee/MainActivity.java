@@ -15,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Home");
     }
 
+    public void gotoProfile(View v) {
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+    }
+
     public void gotoRecommendation(View v) {
         Intent i = new Intent(this, RecomendationActivity.class);
         startActivity(i);
