@@ -2,17 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/passwordTextView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
-
+    tools:context=".RegisterActivity"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:padding="15dp"
+        android:gravity="center"
         android:orientation="vertical">
         <ImageView
             android:layout_width="wrap_content"
@@ -21,28 +19,41 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LOG IN"
-            android:textColor="#4a4a4a"
-            android:textStyle="bold"
+            android:text="Create an Account"
             android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#4a4a4a"
             android:layout_marginBottom="25dp"/>
         <EditText
-            android:inputType="textEmailAddress"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
-            android:hint="Email"
-            android:id="@+id/usernameTextView"
+            android:hint="First name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
         <EditText
+            android:hint="Full name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:inputType="textPassword"
             android:hint="Password"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:inputType="textPassword"
+            android:hint="Confirm your password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <CheckBox
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
-            android:inputType="textPassword" />
+            android:text="I agree with terms and conditions"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="gotoHome"
-            android:text="Log in" />
+            android:text="Register"/>
     </LinearLayout>
 </LinearLayout>

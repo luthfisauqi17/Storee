@@ -15,11 +15,6 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Home");
     }
 
-    public void gotoProfile(View v) {
-        Intent i = new Intent(this, LoginActivity.class);
-        startActivity(i);
-    }
-
     public void gotoRecommendation(View v) {
         Intent i = new Intent(this, RecomendationActivity.class);
         startActivity(i);
@@ -27,6 +22,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void gotoAllItems(View v) {
         Intent i = new Intent(this, AllItemsActivity.class);
+        startActivity(i);
+    }
+
+    public void gotoCart(View v) {
+        Intent i = new Intent(this, CartActivity.class);
+        startActivity(i);
+    }
+
+    public void gotoProfile(View v) {
+        Intent i = new Intent(this, ProfileActivity.class);
         startActivity(i);
     }
 }

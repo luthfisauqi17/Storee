@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecomendationActivity"
+    android:padding="10dp"
     android:orientation="vertical">
     <!-- Section title -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="10dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -47,7 +47,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Mouse"
+            android:text="DOODLE COLLECTION (M238 Wireless Mouse) Logitech"
             android:textColor="#4a4a4a"
             android:layout_gravity="center"
             android:textSize="18sp"/>
@@ -56,7 +56,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="0dp"
-            android:text="Rp. 120.000,00"
+            android:text="Rp. 260.000,00"
             android:layout_gravity="center"
             android:textSize="12sp"/>
     </LinearLayout>
