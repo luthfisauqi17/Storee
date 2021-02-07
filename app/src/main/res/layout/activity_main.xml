@@ -16,15 +16,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"/>
+            android:src="@drawable/logo"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"/>
 
         <ImageButton
             android:layout_width="0dp"
@@ -122,7 +122,7 @@
         android:gravity="center"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Recommended Items"
+        android:text="Recommended Item"
         android:textColor="#4a4a4a"
         android:textSize="25sp"
         android:layout_marginLeft="15dp"
@@ -130,138 +130,52 @@
     <!-- Recommended items -->
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_weight="7"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:gravity="center"
-        android:orientation="horizontal">
-
+        android:background="@drawable/outline_border"
+        android:orientation="vertical"
+        android:paddingVertical="5dp">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="5dp">
-
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9">
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/keyboard" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="WIRELESS TOUCH KEYBOARD K400 PLUS Logitech"
-                android:textAlignment="center"
-                android:textColor="#4a4a4a"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Rp. 325.000,00"
-                android:textSize="12sp" />
         </LinearLayout>
-
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="5dp">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/mouse" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="DOODLE COLLECTION (M238 Wireless Mouse) Logitech"
-                android:textAlignment="center"
-                android:textColor="#4a4a4a"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Rp. 260.000,00"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="5dp">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/speaker2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Z120 USB Powered Speaker Logitech"
-                android:textAlignment="center"
-                android:textColor="#4a4a4a"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Rp. 250.000,00"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="5dp">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/keyboard2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="BLUETOOTH MULTI-DEVICE KEYBOARD K480 Logitech"
-                android:textAlignment="center"
-                android:textColor="#4a4a4a"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Rp. 120.000,00"
-                android:textSize="12sp" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="8">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WIRELESS TOUCH KEYBOARD K400 PLUS Logitech"
+                    android:textColor="#4a4a4a"
+                    android:textAlignment="center"
+                    android:textSize="21sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="4">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp. 325.000,00"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
