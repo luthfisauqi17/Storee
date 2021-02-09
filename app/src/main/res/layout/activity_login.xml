@@ -30,14 +30,16 @@
             android:inputType="textEmailAddress"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:hint="Email"
-            android:id="@+id/usernameTextView"
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <EditText
-            android:hint="Password"
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:hint="Password"
             android:inputType="textPassword" />
         <Button
             android:layout_width="match_parent"
