@@ -32,19 +32,33 @@
             android:hint="Email"
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
+            android:padding="10dp"
+            android:background="@drawable/input_box_netral"
+            android:layout_marginVertical="5dp"
             android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/input_box_netral"
             android:drawableLeft="@drawable/ic_baseline_lock_24"
             android:hint="Password"
             android:inputType="textPassword" />
+
         <Button
+            android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="gotoHome"
+            android:onClick="login"
             android:text="Log in" />
+
+        <TextView
+            android:id="@+id/loginStatusTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
     </LinearLayout>
 </LinearLayout>
