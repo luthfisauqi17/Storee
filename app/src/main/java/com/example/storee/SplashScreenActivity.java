@@ -13,6 +13,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        // We make a splashscreen activity that only onscreen for 3s,
+        // after that move to welcome activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
