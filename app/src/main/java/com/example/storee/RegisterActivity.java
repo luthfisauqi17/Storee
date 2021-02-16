@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -141,63 +142,38 @@ public class RegisterActivity extends AppCompatActivity {
 
         // We need to check if we have error or not, if yes, we cannot process to request API
         if(!errorExist) {
-            // We need to make a RequestQueue object for passing the Request to the API
-            RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
-            // This is the URL of the API
-            String url = "https://storee-api.000webhostapp.com/public/user/register";
-            // A canned request for retrieving the response body at a given URL as a String
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                // This is the listener for the Success response without any errors
+            HttpConfig httpCallPost = new HttpConfig();
+            httpCallPost.setMethodtype(HttpConfig.POST);
+            httpCallPost.setUrl("https://storee-api.000webhostapp.com/public/user/register");
+            HashMap<String, String> paramsPost = new HashMap<>();
+
+            paramsPost.put("user_first_name", firstName);
+            paramsPost.put("user_last_name", lastName);
+            paramsPost.put("user_email", email);
+            paramsPost.put("user_pn", phoneNumber);
+            paramsPost.put("user_password", password);
+
+
+            httpCallPost.setParams(paramsPost);
+            new HttpRequestHandler() {
                 @Override
                 public void onResponse(String response) {
-                    // Create a popup toast to inform the user
-                    Toast.makeText(RegisterActivity.this, "Register SUCCEED", Toast.LENGTH_SHORT).show();
-                    // Set the color of the success message
-                    registerStatsTV.setTextColor(Color.parseColor("#48A868"));
-                    // Set the text to "Login SUCCEED"
-                    registerStatsTV.setText("Register SUCCEED");
-                    // Create an Intent to move to another activity
-                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                    // Move to another activity
-                    startActivity(i);
+                    super.onResponse(response);
+                    Log.d("Length:", String.valueOf(response.length()));
+                    if(response.length() != 0) {
+                        registerStatsTV.setTextColor(Color.parseColor("#48A868"));
+                        registerStatsTV.setText("Register SUCCEED");
+                        Log.d("Test Success", response);
+                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(i);
+                    }
+                    else {
+                        registerStatsTV.setTextColor(Color.parseColor("#F19696"));
+                        registerStatsTV.setText("Register FAILED");
+                        Log.d("Test Failed", response);
+                    }
                 }
-            }, new Response.ErrorListener() {
-                // This is the listener if there is any errors when receiving the response
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // Create a popup toast to inform the user
-                    Toast.makeText(RegisterActivity.this, "Register FAILED", Toast.LENGTH_SHORT).show();
-                    // Set the color of the fail message
-                    registerStatsTV.setTextColor(Color.parseColor("#F19696"));
-                    // Set the text to "Login failed"
-                    registerStatsTV.setText("Register failed, please try again");
-                }
-            }) {
-                @Override
-                // Overriding the getParams method allows you to build the HashMap and
-                // return the object to the Volley request for posting.
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_first_name", firstName);
-                    params.put("user_last_name", lastName);
-                    params.put("user_email", email);
-                    params.put("user_pn", phoneNumber);
-                    params.put("user_password", password);
-                    return params;
-                }
-
-                // Returns a list of extra HTTP headers to go along with this request
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    // application/x-www-form-urlencoded represents a URL encoded form.
-                    // This is the default value if enctype attribute is not set to anything.
-                    params.put("Content-Type", "application/x-www-form-urlencoded");
-                    return params;
-                }
-            };
-            // Add a request
-            requestQueue.add(stringRequest);
+            }.execute(httpCallPost);
         }
         // This means we have some errors, and we need to let the user know what the error are
         else {
