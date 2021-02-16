@@ -50,7 +50,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 // URLConnection class represent a communications link between the application and a URL
                 // Instances of this class can be used both to read from and to write to the resource referenced by the URL
                 URLConnection conn = url.openConnection();
+                // Representing an input stream of bytes
                 InputStream is = conn.getInputStream();
+                // An InputStreamReader is a bridge from byte streams to character streams: It reads bytes and decodes them into characters using a specified charset.
+                // The charset that it uses may be specified by name or may be given explicitly, or the platform's default charset may be accepted.
                 InputStreamReader isr = new InputStreamReader(is);
                 int data = isr.read();
                 while(data != -1) {
