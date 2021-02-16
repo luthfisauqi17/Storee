@@ -16,19 +16,21 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpRequestHandler extends AsyncTask<HttpConfig, String, String> {
+import javax.net.ssl.HttpsURLConnection;
+
+public class HttpsRequestHandler extends AsyncTask<HttpConfig, String, String> {
 
     private static final String UTF_8 = "UTF-8";
 
     @Override
     protected String doInBackground(HttpConfig... params) {
-        HttpURLConnection urlConnection = null;
+        HttpsURLConnection urlConnection = null;
         HttpConfig httpConfig = params[0];
         StringBuilder response = new StringBuilder();
         try{
             String dataParams = getDataString(httpConfig.getParams(), httpConfig.getMethodtype());
             URL url = new URL(httpConfig.getMethodtype() == HttpConfig.GET ? httpConfig.getUrl() + dataParams : httpConfig.getUrl());
-            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setRequestMethod(httpConfig.getMethodtype() == HttpConfig.GET ? "GET":"POST");
             urlConnection.setReadTimeout(10000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);

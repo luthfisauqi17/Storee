@@ -9,18 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -83,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             paramsPost.put("email", email);
             paramsPost.put("password", password);
             httpCallPost.setParams(paramsPost);
-            new HttpRequestHandler() {
+            new HttpsRequestHandler() {
                 @Override
                 public void onResponse(String response) {
                     super.onResponse(response);

@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -147,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
             httpCallPost.setParams(paramsPost);
-            new HttpRequestHandler() {
+            new HttpsRequestHandler() {
                 @Override
                 public void onResponse(String response) {
                     super.onResponse(response);
