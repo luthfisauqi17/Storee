@@ -53,13 +53,9 @@ public class HttpsRequestHandler extends AsyncTask<HttpConfig, String, String> {
             else {
                 response.append("");
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             urlConnection.disconnect();
         }
         return response.toString();
