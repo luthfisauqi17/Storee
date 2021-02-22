@@ -3,7 +3,7 @@ package com.example.storee;
 import java.util.HashMap;
 
 // This class is for set and get the HTTP configurations
-public class HttpConfig {
+public class HttpsConfig {
     // id of each HTTP request methods
     public static final int GET = 1;
     public static final int POST = 2;

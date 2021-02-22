@@ -66,13 +66,13 @@ public class LoginActivity extends AppCompatActivity {
 
         // We need to check if we have error or not, if yes, we cannot process to request API
         if (!errorExist) {
-            HttpConfig httpCallPost = new HttpConfig();
-            httpCallPost.setMethodtype(HttpConfig.POST);
-            httpCallPost.setUrl("https://storee-api.000webhostapp.com/public/user/login");
+            HttpsConfig httpsCallPost = new HttpsConfig();
+            httpsCallPost.setMethodtype(HttpsConfig.POST);
+            httpsCallPost.setUrl("https://storee-api.000webhostapp.com/public/user/login");
             HashMap<String, String> paramsPost = new HashMap<>();
             paramsPost.put("email", email);
             paramsPost.put("password", password);
-            httpCallPost.setParams(paramsPost);
+            httpsCallPost.setParams(paramsPost);
             new HttpsRequestHandler() {
                 @Override
                 public void onResponse(String response) {
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("Test Failed", response);
                     }
                 }
-            }.execute(httpCallPost);
+            }.execute(httpsCallPost);
         }
         // This means we have some errors, and we need to let the user know what the error are
         else {
