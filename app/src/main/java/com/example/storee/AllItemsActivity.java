@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,11 +27,25 @@ public class AllItemsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_items);
+        loadProduct("");
+    }
 
+    public void gotoHome(View v) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
+    public void searchItem(View v) {
+        loadProduct(((EditText)findViewById(R.id.all_item_search_et_id)).getText().toString());
+    }
+
+    public void loadProduct(String productName) {
+        lstItem.clear();
         HttpsConfig httpsCallPost = new HttpsConfig();
         httpsCallPost.setMethodtype(HttpsConfig.GET);
         httpsCallPost.setUrl("https://storee-api.000webhostapp.com/public/product/get_product");
         HashMap<String, String> paramsPost = new HashMap<>();
+        paramsPost.put("productName", productName);
         httpsCallPost.setParams(paramsPost);
         new HttpsRequestHandler() {
             @Override
@@ -53,20 +68,14 @@ public class AllItemsActivity extends AppCompatActivity {
                                 o.getString("created_at")));
                     }
 
-                    RecyclerView myrv = (RecyclerView) findViewById(R.id.all_item_recycleview_id);
+                    RecyclerView myRv = (RecyclerView) findViewById(R.id.all_item_recycleview_id);
                     ProductRecyclerViewAdapter myAdapter = new ProductRecyclerViewAdapter(AllItemsActivity.this, lstItem);
-                    myrv.setLayoutManager(new GridLayoutManager(AllItemsActivity.this, 2));
-                    myrv.setAdapter(myAdapter);
-
+                    myRv.setLayoutManager(new GridLayoutManager(AllItemsActivity.this, 2));
+                    myRv.setAdapter(myAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }.execute(httpsCallPost);
-    }
-
-    public void gotoHome(View v) {
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
     }
 }

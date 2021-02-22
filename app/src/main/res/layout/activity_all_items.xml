@@ -29,21 +29,38 @@
             android:textStyle="normal"
             android:layout_gravity="center"/>
     </LinearLayout>
-    <EditText
-        android:layout_marginVertical="15dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:hint="Search item"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:background="@drawable/search_background"
+        android:layout_height="30dp"
         android:layout_weight="1"
-        android:drawableRight="@drawable/ic_baseline_search_24_4a4a4a"/>
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/all_item_search_et_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="15dp"
+            android:layout_weight="10"
+            android:background="@drawable/search_background"
+            android:hint="Search item"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp" />
+
+        <ImageButton
+            android:id="@+id/all_item_search_btn_id"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:onClick="searchItem"
+            android:src="@drawable/ic_baseline_search_24_4a4a4a" />
+    </LinearLayout>
+
     <!-- Item list -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9">
+        android:layout_weight="10">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_item_recycleview_id"
             android:layout_width="match_parent"

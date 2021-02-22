@@ -3,7 +3,7 @@
     package="com.example.storee">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,18 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Storee">
-        <activity android:name=".SplashScreenActivity">
-            </activity>
+        <activity android:name=".ProductActivity"></activity>
+        <activity android:name=".SplashScreenActivity"></activity>
         <activity android:name=".CartActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".WelcomeActivity">
-
-        </activity>
+        <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AllItemsActivity" />
         <activity android:name=".RecomendationActivity" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

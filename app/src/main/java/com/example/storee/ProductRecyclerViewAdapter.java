@@ -1,6 +1,7 @@
 package com.example.storee;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
@@ -45,6 +47,18 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         String imageURL = "https://storee-api.000webhostapp.com/public/assets/product_image/" + mData.get(position).getImage();
         LoadImage loadImage = new LoadImage(holder.iv_product_image);
         loadImage.execute(imageURL);
+
+        // Click listener
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(mContext, ProductActivity.class);
+                i.putExtra("Name", mData.get(position).getName());
+                i.putExtra("Price", String.valueOf("Rp." + mData.get(position).getPrice()));
+                i.putExtra("Image", mData.get(position).getImage());
+                mContext.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -56,6 +70,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         TextView tv_product_name;
         TextView tv_product_price;
         ImageView iv_product_image;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,37 +78,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             tv_product_name = (TextView)itemView.findViewById(R.id.product_name_id);
             tv_product_price = (TextView)itemView.findViewById(R.id.product_price_id);
             iv_product_image = (ImageView)itemView.findViewById(R.id.product_image_id);
+            cardView = (CardView)itemView.findViewById(R.id.cardview_id);
         }
     }
-
-    private class LoadImage extends AsyncTask<String, Void, Bitmap> {
-        ImageView imageView;
-        public LoadImage(ImageView iv_product_image) {
-            this.imageView = iv_product_image;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... strings) {
-            String urlLink = strings[0];
-            Bitmap bitmap = null;
-            try {
-                InputStream is = new URL(urlLink).openStream();
-                bitmap = BitmapFactory.decodeStream(is);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return bitmap;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-            imageView.setImageBitmap(bitmap);
-            Log.d("Success", "Success, yeay!");
-        }
-    }
-
-
 }
