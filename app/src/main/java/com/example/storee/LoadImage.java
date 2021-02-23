@@ -36,6 +36,5 @@ public class LoadImage extends AsyncTask<String, Void, Bitmap> {
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
         imageView.setImageBitmap(bitmap);
-        Log.d("Success", "Success, yeay!");
     }
 }

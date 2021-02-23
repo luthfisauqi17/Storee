@@ -19,16 +19,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RecommendationActivity extends AppCompatActivity {
 
     List<Product> productList = new ArrayList<>();
     int productId, likedProductId;
 
+    int secondsPassed = 0;
+
+    Timer timer = new Timer();
+    TimerTask task = new TimerTask() {
+
+        @Override
+        public void run() {
+            secondsPassed++;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recomendation);
+
+        timer.scheduleAtFixedRate(task, 0, 1000);
+
         productList.clear();
         HttpsConfig httpsCallPost = new HttpsConfig();
         httpsCallPost.setMethodtype(HttpsConfig.GET);
@@ -66,10 +82,13 @@ public class RecommendationActivity extends AppCompatActivity {
 
     public void likeProduct(View v)
     {
-        generateProductDisplay();
         likedProductId = productId;
-        Log.d("Liked product id", String.valueOf(likedProductId));
-        Toast.makeText(this, String.valueOf(likedProductId), Toast.LENGTH_SHORT).show();
+        String info =
+                "Liked product: " + String.valueOf(likedProductId) + "\n" +
+                "Duration: " + String.valueOf(secondsPassed);
+        Log.d("Swipee info", info);
+        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+        generateProductDisplay();
     }
 
     public void gotoHome(View v) {
@@ -78,6 +97,7 @@ public class RecommendationActivity extends AppCompatActivity {
     }
 
     public void generateProductDisplay() {
+        secondsPassed = 0;
         Random rand = new Random();
         int randNum = rand.nextInt(productList.size());
         productId = productList.get(randNum).getId();
