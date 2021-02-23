@@ -127,6 +127,9 @@
         />
     <!-- Recommended items -->
     <LinearLayout
+        android:id="@+id/recomended_product_card_id"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_weight="8"
         android:layout_height="0dp"

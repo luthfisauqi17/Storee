@@ -10,14 +10,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
+
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sessionManager = new SessionManager(getApplicationContext());
     }
 
 
@@ -79,11 +86,17 @@ public class LoginActivity extends AppCompatActivity {
                     super.onResponse(response);
                     Log.d("Length:", String.valueOf(response.length()));
                     if(response.length() != 0) {
-                        loginStatsTV.setTextColor(Color.parseColor("#48A868"));
-                        loginStatsTV.setText("Login SUCCEED");
-                        Log.d("Test Success", response);
-                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(i);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONObject userData = (JSONObject) jsonObject.get("data");
+                            Log.d("Json", userData.toString());
+                            sessionManager.setLogin(true);
+                            sessionManager.setUserId(userData.getInt("user_id"));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                     else {
                         loginStatsTV.setTextColor(Color.parseColor("#F19696"));

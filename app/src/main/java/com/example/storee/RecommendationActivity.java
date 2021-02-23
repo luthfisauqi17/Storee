@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class RecommendationActivity extends AppCompatActivity {
+
+    SessionManager sessionManager;
+
+    int userId;
 
     List<Product> productList = new ArrayList<>();
     int productId, likedProductId;
@@ -42,9 +47,11 @@ public class RecommendationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recomendation);
+        sessionManager = new SessionManager(getApplicationContext());
+        userId = sessionManager.getUserId();
 
         timer.scheduleAtFixedRate(task, 0, 1000);
-
+        disableAllButton();
         productList.clear();
         HttpsConfig httpsCallPost = new HttpsConfig();
         httpsCallPost.setMethodtype(HttpsConfig.GET);
@@ -82,10 +89,12 @@ public class RecommendationActivity extends AppCompatActivity {
 
     public void likeProduct(View v)
     {
+        disableAllButton();
         likedProductId = productId;
         String info =
-                "Liked product: " + String.valueOf(likedProductId) + "\n" +
-                "Duration: " + String.valueOf(secondsPassed);
+                "Liked product id: " + String.valueOf(likedProductId) + "\n" +
+                "Duration: " + String.valueOf(secondsPassed) + "\n" +
+                "User id: " + String.valueOf(userId);
         Log.d("Swipee info", info);
         Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
         generateProductDisplay();
@@ -107,5 +116,19 @@ public class RecommendationActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.recomendation_image_id)).setImageBitmap(null);
         LoadImage loadImage = new LoadImage(((ImageView)findViewById(R.id.recomendation_image_id)));
         loadImage.execute(imageURL);
+        enableAllButton();
+    }
+
+    public void disableAllButton()
+    {
+        ((ImageButton)findViewById(R.id.dislike_prod_id)).setEnabled(false);
+        ((ImageButton)findViewById(R.id.cart_prod_id)).setEnabled(false);
+        ((ImageButton)findViewById(R.id.like_prod_id)).setEnabled(false);
+    }
+
+    public void enableAllButton() {
+        ((ImageButton)findViewById(R.id.dislike_prod_id)).setEnabled(true);
+        ((ImageButton)findViewById(R.id.cart_prod_id)).setEnabled(true);
+        ((ImageButton)findViewById(R.id.like_prod_id)).setEnabled(true);
     }
 }
