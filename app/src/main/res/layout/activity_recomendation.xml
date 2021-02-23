@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecomendationActivity"
+    tools:context=".RecommendationActivity"
     android:padding="10dp"
     android:orientation="vertical">
     <!-- Section title -->
@@ -15,12 +15,14 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:layout_gravity="center"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#ffffff"
             android:onClick="gotoHome"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24"
-            android:background="#ffffff"/>
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,29 +38,32 @@
         android:layout_weight="9"
         android:layout_gravity="center"
         android:orientation="vertical">
+
         <ImageView
+            android:id="@+id/recomendation_image_id"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
             android:layout_gravity="center"
-            android:src="@drawable/mouse"/>
+            android:layout_weight="10" />
+
         <TextView
+            android:id="@+id/recomendation_name_id"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="DOODLE COLLECTION (M238 Wireless Mouse) Logitech"
             android:textColor="#4a4a4a"
-            android:layout_gravity="center"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <TextView
+            android:id="@+id/recomendation_price_id"
             android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_height="0dp"
-            android:text="Rp. 260.000,00"
-            android:layout_gravity="center"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
     </LinearLayout>
     <!-- Action buttons -->
     <LinearLayout
@@ -73,6 +78,8 @@
             android:layout_height="100dp"
             android:orientation="horizontal">
             <ImageButton
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_gravity="center"
                 android:layout_width="0dp"
                 android:layout_weight="4"
@@ -80,19 +87,25 @@
                 android:src="@drawable/ic_baseline_thumb_down_24_white"
                 android:background="@color/design_default_color_primary"/>
             <ImageButton
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_gravity="center"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="70dp"
                 android:src="@drawable/ic_baseline_add_shopping_cart_24_white"
                 android:background="@color/design_default_color_primary"/>
+
             <ImageButton
-                android:layout_gravity="center"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
-                android:layout_weight="4"
                 android:layout_height="70dp"
-                android:src="@drawable/ic_baseline_thumb_up_24_white"
-                android:background="@color/design_default_color_primary"/>
+                android:layout_gravity="center"
+                android:layout_weight="4"
+                android:background="@color/design_default_color_primary"
+                android:onClick="likeProduct"
+                android:src="@drawable/ic_baseline_thumb_up_24_white" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

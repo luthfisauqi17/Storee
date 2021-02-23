@@ -27,6 +27,8 @@
             android:layout_marginBottom="25dp"/>
 
         <Button
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_login_24"
@@ -34,6 +36,8 @@
             android:text="Log in" />
 
         <Button
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="gotoRegister"

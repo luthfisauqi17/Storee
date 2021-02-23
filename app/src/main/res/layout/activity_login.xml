@@ -49,6 +49,8 @@
             android:inputType="textPassword" />
 
         <Button
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
