@@ -35,7 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(i);
                 }
                 else
-                    Toast.makeText(SplashScreenActivity.this, "Connection failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SplashScreenActivity.this, "Connection failed!, please try again later..", Toast.LENGTH_SHORT).show();
                 Log.d("Info", response);
             }
         }.execute();

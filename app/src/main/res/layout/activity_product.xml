@@ -63,7 +63,6 @@
                     android:id="@+id/product_detail_name_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="WIRELESS TOUCH KEYBOARD K400 PLUS Logitech"
                     android:textColor="#4a4a4a"
                     android:textAlignment="center"
                     android:textSize="21sp" />
@@ -77,7 +76,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/product_detail_price_id"
-                    android:text="Rp. 325.000,00"
                     android:textAlignment="center"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -99,27 +97,18 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_gravity="center"
                 android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="70dp"
-                android:src="@drawable/ic_baseline_thumb_down_24_white"
-                android:background="@color/design_default_color_primary"/>
-            <ImageButton
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_gravity="center"
-                android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:layout_height="70dp"
                 android:src="@drawable/ic_baseline_add_shopping_cart_24_white"
                 android:background="@color/design_default_color_primary"/>
-            <ImageButton
+            <Button
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_gravity="center"
                 android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:layout_height="70dp"
-                android:src="@drawable/ic_baseline_thumb_up_24_white"
+                android:text="Buy"
                 android:background="@color/design_default_color_primary"/>
         </LinearLayout>
     </LinearLayout>

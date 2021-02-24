@@ -3,7 +3,6 @@ package com.example.storee;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,12 +25,12 @@ import java.util.TimerTask;
 public class RecommendationActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
-
     int userId;
 
     List<Product> productList = new ArrayList<>();
     int productId, likedProductId;
 
+    int randNum;
     int secondsPassed = 0;
 
     Timer timer = new Timer();
@@ -97,7 +96,12 @@ public class RecommendationActivity extends AppCompatActivity {
                 "User id: " + String.valueOf(userId);
         Log.d("Swipee info", info);
         Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
-        generateProductDisplay();
+        productList.remove(randNum);
+        if(productList.size() == 0) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            Toast.makeText(this, "That's it for now, no more recommendation item left!", Toast.LENGTH_SHORT).show();
+        }
+        else generateProductDisplay();
     }
 
     public void gotoHome(View v) {
@@ -108,7 +112,7 @@ public class RecommendationActivity extends AppCompatActivity {
     public void generateProductDisplay() {
         secondsPassed = 0;
         Random rand = new Random();
-        int randNum = rand.nextInt(productList.size());
+        randNum = rand.nextInt(productList.size());
         productId = productList.get(randNum).getId();
         ((TextView)findViewById(R.id.recomendation_name_id)).setText(productList.get(randNum).getName());
         ((TextView)findViewById(R.id.recomendation_price_id)).setText(String.valueOf("Rp." + productList.get(randNum).getPrice()));
