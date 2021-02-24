@@ -22,7 +22,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.MyViewHolder>{
+public class ProductRecyclerViewAdapter extends
+        RecyclerView.Adapter<ProductRecyclerViewAdapter.MyViewHolder>{
     private Context mContext;
     private List<Product> mData;
 
@@ -44,7 +45,8 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_product_name.setText(mData.get(position).getName());
         holder.tv_product_price.setText(String.valueOf("Rp." + mData.get(position).getPrice()));
-        String imageURL = "https://storee-api.000webhostapp.com/public/assets/product_image/" + mData.get(position).getImage();
+        String imageURL = "https://storee-api.000webhostapp.com/public/assets/product_image/" +
+                mData.get(position).getImage();
         LoadImage loadImage = new LoadImage(holder.iv_product_image);
         loadImage.execute(imageURL);
 

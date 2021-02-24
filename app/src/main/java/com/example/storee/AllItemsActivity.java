@@ -69,8 +69,10 @@ public class AllItemsActivity extends AppCompatActivity {
                     }
 
                     RecyclerView myRv = (RecyclerView) findViewById(R.id.all_item_recycleview_id);
-                    ProductRecyclerViewAdapter myAdapter = new ProductRecyclerViewAdapter(AllItemsActivity.this, lstItem);
-                    myRv.setLayoutManager(new GridLayoutManager(AllItemsActivity.this, 2));
+                    ProductRecyclerViewAdapter myAdapter =
+                            new ProductRecyclerViewAdapter(AllItemsActivity.this, lstItem);
+                    myRv.setLayoutManager(
+                            new GridLayoutManager(AllItemsActivity.this, 2));
                     myRv.setAdapter(myAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();

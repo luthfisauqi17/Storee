@@ -86,20 +86,44 @@ public class RecommendationActivity extends AppCompatActivity {
         }.execute(httpsCallPost);
     }
 
+    public void dislikeProduct(View v) {
+        Toast.makeText(this, "Dislike item", Toast.LENGTH_SHORT).show();
+        productList.remove(randNum);
+        generateProductDisplay();
+    }
+
     public void likeProduct(View v)
     {
         disableAllButton();
         likedProductId = productId;
-        String info =
-                "Liked product id: " + String.valueOf(likedProductId) + "\n" +
-                "Duration: " + String.valueOf(secondsPassed) + "\n" +
-                "User id: " + String.valueOf(userId);
-        Log.d("Swipee info", info);
-        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+//        String info =
+//                "Liked product id: " + String.valueOf(likedProductId) + "\n" +
+//                "Duration: " + String.valueOf(secondsPassed) + "\n" +
+//                "User id: " + String.valueOf(userId);
+//        Log.d("Swipee info", info);
+//        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+
+        HttpsConfig httpsCallPostLike = new HttpsConfig();
+        httpsCallPostLike.setMethodtype(HttpsConfig.POST);
+        httpsCallPostLike.setUrl("https://storee-api.000webhostapp.com/public/recommendation/insert_recommendation");
+        HashMap<String, String> paramsPostLike = new HashMap<>();
+        paramsPostLike.put("product_id", String.valueOf(likedProductId));
+        paramsPostLike.put("user_id", String.valueOf(userId));
+        paramsPostLike.put("duration", String.valueOf(secondsPassed));
+        httpsCallPostLike.setParams(paramsPostLike);
+        new HttpsRequestHandler() {
+            @Override
+            public void onResponse(String response) {
+                super.onResponse(response);
+                Log.d("success", response);
+            }
+        }.execute(httpsCallPostLike);
+
         productList.remove(randNum);
         if(productList.size() == 0) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            Toast.makeText(this, "That's it for now, no more recommendation item left!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "That's it for now, no more recommendation item left!",
+                    Toast.LENGTH_SHORT).show();
         }
         else generateProductDisplay();
     }
@@ -114,9 +138,12 @@ public class RecommendationActivity extends AppCompatActivity {
         Random rand = new Random();
         randNum = rand.nextInt(productList.size());
         productId = productList.get(randNum).getId();
-        ((TextView)findViewById(R.id.recomendation_name_id)).setText(productList.get(randNum).getName());
-        ((TextView)findViewById(R.id.recomendation_price_id)).setText(String.valueOf("Rp." + productList.get(randNum).getPrice()));
-        String imageURL = "https://storee-api.000webhostapp.com/public/assets/product_image/" + productList.get(randNum).getImage();
+        ((TextView)findViewById(R.id.recomendation_name_id))
+                .setText(productList.get(randNum).getName());
+        ((TextView)findViewById(R.id.recomendation_price_id))
+                .setText(String.valueOf("Rp." + productList.get(randNum).getPrice()));
+        String imageURL = "https://storee-api.000webhostapp.com/public/assets/product_image/"
+                + productList.get(randNum).getImage();
         ((ImageView)findViewById(R.id.recomendation_image_id)).setImageBitmap(null);
         LoadImage loadImage = new LoadImage(((ImageView)findViewById(R.id.recomendation_image_id)));
         loadImage.execute(imageURL);

@@ -142,10 +142,10 @@
             android:layout_height="0dp"
             android:layout_weight="9">
             <ImageView
+                android:id="@+id/homepage_image_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/keyboard" />
+                android:layout_gravity="center" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,9 +158,9 @@
                 android:gravity="center"
                 android:layout_weight="8">
                 <TextView
+                    android:id="@+id/homepage_name_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="WIRELESS TOUCH KEYBOARD K400 PLUS Logitech"
                     android:textColor="#4a4a4a"
                     android:textAlignment="center"
                     android:textSize="21sp" />
@@ -173,7 +173,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rp. 325.000,00"
+                    android:id="@+id/homepage_price_id"
                     android:textAlignment="center"
                     android:textSize="18sp" />
             </LinearLayout>

@@ -13,6 +13,7 @@ public class HttpsConfig {
     private int methodtype;
     private HashMap<String,String> params ;
 
+
     // Setters and getters
     public String getUrl() {
         return url;
