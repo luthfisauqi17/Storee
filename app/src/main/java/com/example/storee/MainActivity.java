@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
 
+    int prod_id;
+    String prod_name, prod_price, prod_image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
         Log.d("userid", String.valueOf(sessionManager.getUserId()));
 
-        HttpsConfig httpsCallPost = new HttpsConfig();
-        httpsCallPost.setMethodtype(HttpsConfig.GET);
-        httpsCallPost.setUrl("https://storee-api.000webhostapp.com/public/recommendation/get_recommendation");
+        HttpsConfig httpsCallGet = new HttpsConfig();
+        httpsCallGet.setMethodtype(HttpsConfig.GET);
+        httpsCallGet.setUrl(
+                "https://storee-api.000webhostapp.com/public/recommendation/get_recommendation");
         HashMap<String, String> paramsPost = new HashMap<>();
         paramsPost.put("userId", String.valueOf(sessionManager.getUserId()));
-        httpsCallPost.setParams(paramsPost);
+        httpsCallGet.setParams(paramsPost);
         new HttpsRequestHandler() {
             @Override
             public void onResponse(String response) {
@@ -44,12 +48,21 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(response);
                         JSONArray array = jsonObject.getJSONArray("data");
                         JSONObject o = array.getJSONObject(0);
-                        ((TextView)findViewById(R.id.homepage_name_id)).setText(o.getString("product_name"));
-                        ((TextView)findViewById(R.id.homepage_price_id)).setText("Rp. " + o.getString("product_price"));
+                        prod_id = o.getInt("product_id");
+                        prod_name = o.getString("product_name");
+                        prod_price = o.getString("product_price");
+                        prod_image = o.getString("product_image");
+
+                        ((TextView)findViewById(R.id.homepage_name_id)).setText(
+                                o.getString("product_name"));
+                        ((TextView)findViewById(R.id.homepage_price_id)).setText("Rp. " +
+                                o.getString("product_price"));
                         ((ImageView)findViewById(R.id.homepage_image_id)).setImageBitmap(null);
-                        String imageURL = "https://storee-api.000webhostapp.com/public/assets/product_image/"
+                        String imageURL =
+                                "https://storee-api.000webhostapp.com/public/assets/product_image/"
                                 + o.getString("product_image");
-                        LoadImage loadImage = new LoadImage(((ImageView)findViewById(R.id.homepage_image_id)));
+                        LoadImage loadImage = new LoadImage(((ImageView)findViewById(
+                                R.id.homepage_image_id)));
                         loadImage.execute(imageURL);
                         Log.d("homepage", array.getJSONObject(0).toString());
                     } catch (JSONException e) {
@@ -60,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Test Failed", response);
                 }
             }
-        }.execute(httpsCallPost);
+        }.execute(httpsCallGet);
 
 
 
@@ -68,8 +81,12 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Hello World",
-                        Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), ProductActivity.class);
+                i.putExtra("Id", prod_id);
+                i.putExtra("Name", prod_name);
+                i.putExtra("Price", "Rp. " + prod_price);
+                i.putExtra("Image", prod_image);
+                startActivity(i);
             }
         });
     }

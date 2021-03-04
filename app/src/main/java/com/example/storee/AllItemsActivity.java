@@ -41,12 +41,12 @@ public class AllItemsActivity extends AppCompatActivity {
 
     public void loadProduct(String productName) {
         lstItem.clear();
-        HttpsConfig httpsCallPost = new HttpsConfig();
-        httpsCallPost.setMethodtype(HttpsConfig.GET);
-        httpsCallPost.setUrl("https://storee-api.000webhostapp.com/public/product/get_product");
-        HashMap<String, String> paramsPost = new HashMap<>();
-        paramsPost.put("productName", productName);
-        httpsCallPost.setParams(paramsPost);
+        HttpsConfig httpsCallGet = new HttpsConfig();
+        httpsCallGet.setMethodtype(HttpsConfig.GET);
+        httpsCallGet.setUrl("https://storee-api.000webhostapp.com/public/product/get_product");
+        HashMap<String, String> paramsGet = new HashMap<>();
+        paramsGet.put("productName", productName);
+        httpsCallGet.setParams(paramsGet);
         new HttpsRequestHandler() {
             @Override
             public void onResponse(String response) {
@@ -78,6 +78,6 @@ public class AllItemsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }.execute(httpsCallPost);
+        }.execute(httpsCallGet);
     }
 }

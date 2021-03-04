@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,7 @@ public class RecommendationActivity extends AppCompatActivity {
     int userId;
 
     List<Product> productList = new ArrayList<>();
-    int productId, likedProductId;
+    int productId, likedProductId, cartProductId;
 
     int randNum;
     int secondsPassed = 0;
@@ -38,9 +39,23 @@ public class RecommendationActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            secondsPassed++;
+            if(secondsPassed == 15) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        like();
+                    }
+                });
+            }
+            else {
+                secondsPassed++;
+                ((ProgressBar) findViewById(R.id.recomendation_progressbar))
+                        .setProgress((int) (secondsPassed * 6.66666666667));
+            }
         }
+
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +65,14 @@ public class RecommendationActivity extends AppCompatActivity {
         userId = sessionManager.getUserId();
 
         timer.scheduleAtFixedRate(task, 0, 1000);
+
         disableAllButton();
         productList.clear();
-        HttpsConfig httpsCallPost = new HttpsConfig();
-        httpsCallPost.setMethodtype(HttpsConfig.GET);
-        httpsCallPost.setUrl("https://storee-api.000webhostapp.com/public/product/get_product");
-        HashMap<String, String> paramsPost = new HashMap<>();
-        httpsCallPost.setParams(paramsPost);
+        HttpsConfig httpsCallGet = new HttpsConfig();
+        httpsCallGet.setMethodtype(HttpsConfig.GET);
+        httpsCallGet.setUrl("https://storee-api.000webhostapp.com/public/product/get_product");
+        HashMap<String, String> paramsGet = new HashMap<>();
+        httpsCallGet.setParams(paramsGet);
         new HttpsRequestHandler() {
             @Override
             public void onResponse(String response) {
@@ -83,7 +99,7 @@ public class RecommendationActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }.execute(httpsCallPost);
+        }.execute(httpsCallGet);
     }
 
     public void dislikeProduct(View v) {
@@ -92,20 +108,15 @@ public class RecommendationActivity extends AppCompatActivity {
         generateProductDisplay();
     }
 
-    public void likeProduct(View v)
+    public void like()
     {
         disableAllButton();
         likedProductId = productId;
-//        String info =
-//                "Liked product id: " + String.valueOf(likedProductId) + "\n" +
-//                "Duration: " + String.valueOf(secondsPassed) + "\n" +
-//                "User id: " + String.valueOf(userId);
-//        Log.d("Swipee info", info);
-//        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
 
         HttpsConfig httpsCallPostLike = new HttpsConfig();
         httpsCallPostLike.setMethodtype(HttpsConfig.POST);
-        httpsCallPostLike.setUrl("https://storee-api.000webhostapp.com/public/recommendation/insert_recommendation");
+        httpsCallPostLike.setUrl(
+                "https://storee-api.000webhostapp.com/public/recommendation/insert_recommendation");
         HashMap<String, String> paramsPostLike = new HashMap<>();
         paramsPostLike.put("product_id", String.valueOf(likedProductId));
         paramsPostLike.put("user_id", String.valueOf(userId));
@@ -126,6 +137,11 @@ public class RecommendationActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
         else generateProductDisplay();
+    }
+
+    public void likeProduct(View v)
+    {
+        like();
     }
 
     public void gotoHome(View v) {
@@ -153,13 +169,11 @@ public class RecommendationActivity extends AppCompatActivity {
     public void disableAllButton()
     {
         ((ImageButton)findViewById(R.id.dislike_prod_id)).setEnabled(false);
-        ((ImageButton)findViewById(R.id.cart_prod_id)).setEnabled(false);
         ((ImageButton)findViewById(R.id.like_prod_id)).setEnabled(false);
     }
 
     public void enableAllButton() {
         ((ImageButton)findViewById(R.id.dislike_prod_id)).setEnabled(true);
-        ((ImageButton)findViewById(R.id.cart_prod_id)).setEnabled(true);
         ((ImageButton)findViewById(R.id.like_prod_id)).setEnabled(true);
     }
 }

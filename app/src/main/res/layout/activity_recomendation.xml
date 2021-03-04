@@ -32,6 +32,12 @@
             android:layout_gravity="center"/>
     </LinearLayout>
     <!-- Item display -->
+    <ProgressBar
+        android:id="@+id/recomendation_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_margin="16dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -83,22 +89,12 @@
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:background="@color/design_default_color_primary"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:onClick="dislikeProduct"
                 android:src="@drawable/ic_baseline_thumb_down_24_white" />
-            <ImageButton
-                android:id="@+id/cart_prod_id"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_gravity="center"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="70dp"
-                android:src="@drawable/ic_baseline_add_shopping_cart_24_white"
-                android:background="@color/design_default_color_primary"/>
 
             <ImageButton
                 android:id="@+id/like_prod_id"
@@ -107,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:background="@color/design_default_color_primary"
                 android:onClick="likeProduct"
                 android:src="@drawable/ic_baseline_thumb_up_24_white" />

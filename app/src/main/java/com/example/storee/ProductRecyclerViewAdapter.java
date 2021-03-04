@@ -55,6 +55,7 @@ public class ProductRecyclerViewAdapter extends
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(mContext, ProductActivity.class);
+                i.putExtra("Id", mData.get(position).getId());
                 i.putExtra("Name", mData.get(position).getName());
                 i.putExtra("Price", String.valueOf("Rp." + mData.get(position).getPrice()));
                 i.putExtra("Image", mData.get(position).getImage());

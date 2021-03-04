@@ -41,16 +41,21 @@
            android:layout_height="wrap_content"
            android:src="@drawable/img"/>
        <TextView
+           android:id="@+id/profile_name"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Luthfi Syauqi"
            android:textColor="#4a4a4a"
            android:textSize="24sp"/>
        <TextView
+           android:id="@+id/profile_email"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textColor="#4a4a4a"
-           android:text="Sauqiluthfi877@gmail.com"/>
+           android:textColor="#4a4a4a"/>
+       <TextView
+           android:id="@+id/profile_phone"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="#4a4a4a"/>
    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
